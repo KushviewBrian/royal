@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
  // Initialize mobile menu toggle
   initializeMobileMenu();
   
-  // Initialize sticky header
+  // Initialize sticky header and progress indicator
   initializeStickyHeader();
   
   // Initialize smooth scrolling for anchor links
@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize back to top button
   initializeBackToTop();
+  
+  // Initialize table of contents
+  initializeTableOfContents();
+  
+  // Initialize keyboard navigation
+  initializeKeyboardNavigation();
 });
 
 function initializeMobileMenu() {
@@ -51,20 +57,33 @@ function initializeMobileMenu() {
 
 function initializeStickyHeader() {
   const navbar = document.querySelector('.navbar');
+  const sections = document.querySelectorAll('section[id]');
   
-  if (navbar) {
+  if (navbar && sections.length) {
     const navbarHeight = navbar.offsetHeight;
+    
+    // Create progress indicator
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
     
     // Add padding to body to account for fixed header
     document.body.style.paddingTop = navbarHeight + 'px';
     
     // Add scroll event listener
     window.addEventListener('scroll', function() {
+      // Update navbar scrolled state
       if (window.scrollY > 10) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
+      
+      // Update progress indicator
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const progress = (scrollPosition / docHeight) * 100;
+      progressBar.style.width = `${progress}%`;
     });
   }
 }
@@ -154,3 +173,66 @@ function updateActiveNavLink() {
 
 // Add scroll event listener to update active nav link
 window.addEventListener('scroll', updateActiveNavLink);
+
+function initializeTableOfContents() {
+  const sections = document.querySelectorAll('section[id]');
+  const toc = document.createElement('div');
+  toc.className = 'table-of-contents';
+  
+  sections.forEach(section => {
+    const link = document.createElement('a');
+    link.href = `#${section.id}`;
+    link.textContent = section.querySelector('h2')?.textContent || section.id;
+    link.classList.add('toc-link');
+    toc.appendChild(link);
+  });
+
+  document.body.appendChild(toc);
+
+  // Update active state on scroll
+  window.addEventListener('scroll', function() {
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+    
+    sections.forEach((section, index) => {
+      const link = toc.children[index];
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      
+      if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+}
+
+function initializeKeyboardNavigation() {
+  const sections = document.querySelectorAll('section[id]');
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const currentScroll = window.scrollY + window.innerHeight / 2;
+      let targetSection;
+      
+      if (e.key === 'ArrowDown') {
+        targetSection = Array.from(sections).find(section =>
+          section.offsetTop > currentScroll
+        );
+      } else {
+        targetSection = Array.from(sections).reverse().find(section =>
+          section.offsetTop + section.offsetHeight < currentScroll
+        );
+      }
+      
+      if (targetSection) {
+        const offsetPosition = targetSection.offsetTop - 80;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  });
+}

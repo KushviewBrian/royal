@@ -194,12 +194,61 @@
   height: 300px;
 }
 
-/* Parallax effect for hero section */
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+/* Premium Parallax Effects */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.parallax-layer--base {
+  transform: translateZ(0);
+}
+
+.parallax-layer--back-1 {
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax-layer--back-2 {
+  transform: translateZ(-2px) scale(3);
+}
+
+.parallax-layer--fore-1 {
+  transform: translateZ(1px) scale(0.5);
+}
+
+.parallax-layer--fore-2 {
+  transform: translateZ(2px) scale(0.33);
+}
+
+/* Smooth parallax transitions */
+.parallax-transition {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .parallax-container {
+    perspective: none;
+    height: auto;
+    overflow: visible;
+  }
+  
+  .parallax-layer {
+    position: relative;
+    transform: none !important;
+  }
 }
 
 /* Scroll animations */
@@ -271,6 +320,59 @@
 
 .delay-900 {
   animation-delay: 0.9s;
+}
+
+/* Dynamic Gradient Animations */
+.dynamic-gradient {
+  background-size: 200% 200%;
+  animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-primary {
+  background-image: linear-gradient(
+    135deg,
+    var(--primary-royal-gold),
+    var(--secondary-deep-navy),
+    var(--secondary-rich-black)
+  );
+}
+
+.gradient-accent {
+  background-image: linear-gradient(
+    135deg,
+    var(--accent-ember-red),
+    var(--primary-royal-gold),
+    var(--accent-premium-silver)
+  );
+}
+
+.gradient-vertical {
+  background-image: linear-gradient(
+    to bottom,
+    var(--secondary-deep-navy),
+    var(--secondary-rich-black),
+    var(--primary-royal-gold)
+  );
+}
+
+/* Reduced motion alternative */
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-gradient {
+    animation: none;
+    background-size: cover;
+  }
 }
 
 .delay-100 {
