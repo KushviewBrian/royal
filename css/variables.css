@@ -1,0 +1,112 @@
+/* Royal Smoke & Tobacco CSS Variables */
+:root {
+  /* Primary Colors */
+  --primary-royal-gold: #FFD700; /* luxury, premium positioning */
+  --primary-white: #FFFFFF; /* clarity, cleanliness */
+  
+  /* Secondary Colors */
+  --secondary-deep-navy: #1a1f3a; /* sophistication, trust */
+  --secondary-rich-black: #0a0a0a; /* elegance, product contrast */
+  --secondary-smoke-gray: #2a2d3a; /* subtle backgrounds */
+  
+  /* Accent Colors */
+  --accent-ember-red: #e63946; /* CTAs, urgency */
+  --accent-premium-silver: #c0c0c0; /* highlights, borders */
+  --accent-success-green: #2a9d8f; /* verification, trust signals */
+  
+  /* Semantic Colors */
+  --semantic-warning-amber: #f4a261; /* age verification */
+  --semantic-info-blue: #457b9d; /* informational elements */
+  
+  /* Background Colors */
+  --bg-primary: var(--primary-white);
+  --bg-secondary: var(--secondary-smoke-gray);
+  --bg-tertiary: #f8f9fa;
+  --bg-overlay: rgba(10, 10, 10, 0.85);
+  
+  /* Text Colors */
+  --text-primary: var(--secondary-rich-black);
+  --text-secondary: var(--secondary-deep-navy);
+  --text-muted: #6c757d;
+  --text-light: var(--primary-white);
+  --text-accent: var(--primary-royal-gold);
+  
+  /* Border Colors */
+  --border-primary: var(--accent-premium-silver);
+  --border-accent: var(--primary-royal-gold);
+  
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-heavy: rgba(0, 0, 0, 0.2);
+  
+  /* Spacing System (8px base unit) */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
+  
+  /* Typography */
+  --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Playfair Display', Georgia, 'Times New Roman', Times, serif;
+  --font-accent: 'Bebas Neue', 'Arial Black', sans-serif;
+  
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-hero: clamp(2rem, 5vw, 3.5rem); /* 3.5rem / 56px responsive */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-lg);
+  --header-height: 80px;
+  --footer-height: 300px;
+  
+  /* Z-index */
+  --z-index-navbar: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-overlay: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+ --transition-slow: 0.5s ease;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+  
+  /* Breakpoints */
+  --breakpoint-xs: 480px;
+ --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
