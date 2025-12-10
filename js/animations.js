@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize form animations
   initializeFormAnimations();
+  
+  // Initialize product carousel
+  initializeProductCarousel();
 });
 
 function initializeScrollAnimations() {
@@ -155,3 +158,93 @@ function pageLoadAnimations() {
 
 // Initialize page load animations
 window.addEventListener('load', pageLoadAnimations);
+
+// Function to initialize product carousel
+function initializeProductCarousel() {
+  const carouselContainer = document.querySelector('.product-carousel-container');
+  if (!carouselContainer) return;
+  
+  const carousel = carouselContainer.querySelector('.product-carousel');
+  const slides = carouselContainer.querySelectorAll('.product-slide');
+  const prevBtn = carouselContainer.querySelector('.carousel-prev');
+  const nextBtn = carouselContainer.querySelector('.carousel-next');
+  const indicatorsContainer = carouselContainer.querySelector('.carousel-indicators');
+  
+  if (!carousel || !slides.length) return;
+  
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+  
+  // Create indicators
+  for (let i = 0; i < totalSlides; i++) {
+    const indicator = document.createElement('button');
+    indicator.classList.add('carousel-indicator');
+    indicator.dataset.slide = i;
+    indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    indicatorsContainer.appendChild(indicator);
+    
+    indicator.addEventListener('click', () => {
+      goToSlide(i);
+    });
+  }
+  
+  const indicators = carouselContainer.querySelectorAll('.carousel-indicator');
+  
+  // Function to update carousel display
+  function updateCarousel() {
+    // Move carousel to show current slide
+    const translateX = -currentSlide * 100;
+    carousel.style.transform = `translateX(${translateX}%)`;
+    
+    // Update active indicator
+    indicators.forEach((indicator, index) => {
+      if (index === currentSlide) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+  
+  // Function to go to a specific slide
+  function goToSlide(slideIndex) {
+    currentSlide = slideIndex;
+    updateCarousel();
+  }
+  
+  // Next slide function
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+  
+  // Previous slide function
+ function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+  
+  // Add event listeners to buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', prevSlide);
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+  }
+  
+  // Auto-advance slides
+  let autoSlideInterval = setInterval(nextSlide, 5000);
+  
+  // Pause auto-advance when user hovers over carousel
+  carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+  });
+  
+  carouselContainer.addEventListener('mouseleave', () => {
+    autoSlideInterval = setInterval(nextSlide, 5000);
+ });
+  
+  // Initialize carousel
+  updateCarousel();
+}

@@ -123,8 +123,8 @@ function initializeSmoothScrolling() {
 }
 
 function initializeBackToTop() {
- const backToTopButton = document.createElement('button');
-  backTopButton.classList.add('back-to-top');
+  const backToTopButton = document.createElement('button');
+  backToTopButton.classList.add('back-to-top');
   backToTopButton.innerHTML = '↑';
   backToTopButton.setAttribute('aria-label', 'Back to top');
   document.body.appendChild(backToTopButton);
@@ -144,7 +144,7 @@ function initializeBackToTop() {
       top: 0,
       behavior: 'smooth'
     });
- });
+  });
 }
 
 // Function to update active navigation link based on scroll position
