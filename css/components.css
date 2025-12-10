@@ -201,12 +201,12 @@
   height: 80vh;
   min-height: 500px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   text-align: center;
   overflow: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url('../royal_smoke_tobacco_banner.png') center/contain no-repeat;
+              url('../royal_smoke_tobacco_banner.png') center top/contain no-repeat;
   background-color: var(--secondary-rich-black);
 }
 
@@ -223,7 +223,7 @@
 
 .hero-content {
   max-width: var(--container-max-width);
-  padding: 0 var(--container-padding);
+  padding: 0 var(--container-padding) var(--spacing-xxl);
   color: var(--text-light);
   z-index: 2;
 }
@@ -232,6 +232,9 @@
   font-size: var(--font-size-hero);
   margin-bottom: var(--spacing-md);
   text-shadow: 0 2px 4px var(--shadow-heavy);
+  color: var(--primary-royal-gold);
+  font-family: var(--font-accent);
+  letter-spacing: 0.05em;
 }
 
 .hero-subtitle {
