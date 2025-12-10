@@ -201,12 +201,13 @@
   height: 80vh;
   min-height: 500px;
   display: flex;
- align-items: center;
+  align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url('../royal_smoke_tobacco_banner.png') center/cover no-repeat;
+              url('../royal_smoke_tobacco_banner.png') center/contain no-repeat;
+  background-color: var(--secondary-rich-black);
 }
 
 .hero::before {
@@ -277,6 +278,28 @@
 
 .section-dark .section-title {
   color: var(--text-light);
+}
+
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+  color: var(--text-light);
+}
+
+.section-dark p,
+.section-dark span,
+.section-dark div {
+  color: var(--text-light);
+}
+
+.section-dark a {
+  color: var(--primary-royal-gold);
+}
+
+.section-dark a:hover {
+  color: #e6c200;
 }
 
 /* Footer styles */
