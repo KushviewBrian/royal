@@ -425,10 +425,14 @@
     align-items: center;
     transition: var(--transition-normal);
     z-index: var(--z-index-modal);
+    visibility: hidden;
+    opacity: 0;
   }
 
   .navbar-nav.active {
     right: 0;
+    visibility: visible;
+    opacity: 1;
   }
 
  .navbar-nav .nav-item {
@@ -437,6 +441,7 @@
 
   .hamburger {
     display: flex;
+    z-index: calc(var(--z-index-modal) + 1);
   }
 
   .footer-content {
